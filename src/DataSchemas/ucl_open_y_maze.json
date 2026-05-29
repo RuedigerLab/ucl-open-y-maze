@@ -1,5 +1,25 @@
 {
   "$defs": {
+    "DoorCommand": {
+      "properties": {
+        "doorId": {
+          "title": "DoorId",
+          "type": "integer"
+        },
+        "probability": {
+          "default": 0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Probability",
+          "type": "number"
+        }
+      },
+      "required": [
+        "doorId"
+      ],
+      "title": "DoorCommand",
+      "type": "object"
+    },
     "ExperimentSession": {
       "description": "The base class for creating ucl-open experiment models.",
       "properties": {
@@ -37,6 +57,19 @@
         "sessionId"
       ],
       "title": "ExperimentSession",
+      "type": "object"
+    },
+    "RewardProbability": {
+      "properties": {
+        "probability": {
+          "default": 0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Probability",
+          "type": "number"
+        }
+      },
+      "title": "RewardProbability",
       "type": "object"
     },
     "UclOpenYMazeRig": {
@@ -87,8 +120,60 @@
       "type": "object"
     },
     "UclOpenYMazeTaskParameters": {
-      "properties": {},
+      "properties": {
+        "rngSeed": {
+          "default": null,
+          "description": "Seed of the random number generator",
+          "title": "RngSeed",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "armRewardProbabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/RewardProbability"
+          },
+          "title": "ArmRewardProbabilities",
+          "type": "object"
+        },
+        "triggerDoorMapping": {
+          "additionalProperties": {
+            "items": {
+              "$ref": "#/$defs/DoorCommand"
+            },
+            "type": "array"
+          },
+          "title": "TriggerDoorMapping",
+          "type": "object"
+        },
+        "triggerVisualMapping": {
+          "additionalProperties": {
+            "$ref": "#/$defs/VisualStimulation"
+          },
+          "title": "TriggerVisualMapping",
+          "type": "object"
+        }
+      },
+      "required": [
+        "armRewardProbabilities",
+        "triggerDoorMapping",
+        "triggerVisualMapping"
+      ],
       "title": "UclOpenYMazeTaskParameters",
+      "type": "object"
+    },
+    "VisualStimulation": {
+      "properties": {
+        "screenId": {
+          "title": "ScreenId",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "screenId"
+      ],
+      "title": "VisualStimulation",
       "type": "object"
     }
   },

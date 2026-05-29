@@ -9,6 +9,87 @@ namespace UclOpenYMaze
 {
     #pragma warning disable // Disable all warnings
 
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class DoorCommand
+    {
+    
+        private int _doorId;
+    
+        private double _probability;
+    
+        public DoorCommand()
+        {
+            _probability = 0D;
+        }
+    
+        protected DoorCommand(DoorCommand other)
+        {
+            _doorId = other._doorId;
+            _probability = other._probability;
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("doorId", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="doorId")]
+        public int DoorId
+        {
+            get
+            {
+                return _doorId;
+            }
+            set
+            {
+                _doorId = value;
+            }
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("probability")]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="probability")]
+        public double Probability
+        {
+            get
+            {
+                return _probability;
+            }
+            set
+            {
+                _probability = value;
+            }
+        }
+    
+        public System.IObservable<DoorCommand> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new DoorCommand(this)));
+        }
+    
+        public System.IObservable<DoorCommand> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new DoorCommand(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("DoorId = " + _doorId + ", ");
+            stringBuilder.Append("Probability = " + _probability);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
     /// <summary>
     /// The base class for creating ucl-open experiment models.
     /// </summary>
@@ -149,6 +230,69 @@ namespace UclOpenYMaze
             stringBuilder.Append("RepositoryUrl = " + _repositoryUrl + ", ");
             stringBuilder.Append("SubjectId = " + _subjectId + ", ");
             stringBuilder.Append("SessionId = " + _sessionId);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class RewardProbability
+    {
+    
+        private double _probability;
+    
+        public RewardProbability()
+        {
+            _probability = 0D;
+        }
+    
+        protected RewardProbability(RewardProbability other)
+        {
+            _probability = other._probability;
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("probability")]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="probability")]
+        public double Probability
+        {
+            get
+            {
+                return _probability;
+            }
+            set
+            {
+                _probability = value;
+            }
+        }
+    
+        public System.IObservable<RewardProbability> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new RewardProbability(this)));
+        }
+    
+        public System.IObservable<RewardProbability> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new RewardProbability(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("Probability = " + _probability);
             return true;
         }
     
@@ -368,12 +512,90 @@ namespace UclOpenYMaze
     public partial class UclOpenYMazeTaskParameters
     {
     
+        private double? _rngSeed;
+    
+        private System.Collections.Generic.Dictionary<string, RewardProbability> _armRewardProbabilities;
+    
+        private System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<DoorCommand>> _triggerDoorMapping;
+    
+        private System.Collections.Generic.Dictionary<string, VisualStimulation> _triggerVisualMapping;
+    
         public UclOpenYMazeTaskParameters()
         {
+            _armRewardProbabilities = new System.Collections.Generic.Dictionary<string, RewardProbability>();
+            _triggerDoorMapping = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<DoorCommand>>();
+            _triggerVisualMapping = new System.Collections.Generic.Dictionary<string, VisualStimulation>();
         }
     
         protected UclOpenYMazeTaskParameters(UclOpenYMazeTaskParameters other)
         {
+            _rngSeed = other._rngSeed;
+            _armRewardProbabilities = other._armRewardProbabilities;
+            _triggerDoorMapping = other._triggerDoorMapping;
+            _triggerVisualMapping = other._triggerVisualMapping;
+        }
+    
+        /// <summary>
+        /// Seed of the random number generator
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("rngSeed")]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="rngSeed")]
+        [System.ComponentModel.DescriptionAttribute("Seed of the random number generator")]
+        public double? RngSeed
+        {
+            get
+            {
+                return _rngSeed;
+            }
+            set
+            {
+                _rngSeed = value;
+            }
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("armRewardProbabilities", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="armRewardProbabilities")]
+        public System.Collections.Generic.Dictionary<string, RewardProbability> ArmRewardProbabilities
+        {
+            get
+            {
+                return _armRewardProbabilities;
+            }
+            set
+            {
+                _armRewardProbabilities = value;
+            }
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("triggerDoorMapping", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="triggerDoorMapping")]
+        public System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<DoorCommand>> TriggerDoorMapping
+        {
+            get
+            {
+                return _triggerDoorMapping;
+            }
+            set
+            {
+                _triggerDoorMapping = value;
+            }
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("triggerVisualMapping", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="triggerVisualMapping")]
+        public System.Collections.Generic.Dictionary<string, VisualStimulation> TriggerVisualMapping
+        {
+            get
+            {
+                return _triggerVisualMapping;
+            }
+            set
+            {
+                _triggerVisualMapping = value;
+            }
         }
     
         public System.IObservable<UclOpenYMazeTaskParameters> Generate()
@@ -388,7 +610,73 @@ namespace UclOpenYMaze
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
-            return false;
+            stringBuilder.Append("RngSeed = " + _rngSeed + ", ");
+            stringBuilder.Append("ArmRewardProbabilities = " + _armRewardProbabilities + ", ");
+            stringBuilder.Append("TriggerDoorMapping = " + _triggerDoorMapping + ", ");
+            stringBuilder.Append("TriggerVisualMapping = " + _triggerVisualMapping);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class VisualStimulation
+    {
+    
+        private int _screenId;
+    
+        public VisualStimulation()
+        {
+        }
+    
+        protected VisualStimulation(VisualStimulation other)
+        {
+            _screenId = other._screenId;
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("screenId", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="screenId")]
+        public int ScreenId
+        {
+            get
+            {
+                return _screenId;
+            }
+            set
+            {
+                _screenId = value;
+            }
+        }
+    
+        public System.IObservable<VisualStimulation> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new VisualStimulation(this)));
+        }
+    
+        public System.IObservable<VisualStimulation> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new VisualStimulation(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("ScreenId = " + _screenId);
+            return true;
         }
     
         public override string ToString()
@@ -468,9 +756,19 @@ namespace UclOpenYMaze
             return System.Reactive.Linq.Observable.Select(source, value => Newtonsoft.Json.JsonConvert.SerializeObject(value, formatting));
         }
 
+        public System.IObservable<string> Process(System.IObservable<DoorCommand> source)
+        {
+            return Process<DoorCommand>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<ExperimentSession> source)
         {
             return Process<ExperimentSession>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<RewardProbability> source)
+        {
+            return Process<RewardProbability>(source);
         }
 
         public System.IObservable<string> Process(System.IObservable<UclOpenYMazeRig> source)
@@ -488,6 +786,11 @@ namespace UclOpenYMaze
             return Process<UclOpenYMazeTaskParameters>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<VisualStimulation> source)
+        {
+            return Process<VisualStimulation>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<Json> source)
         {
             return Process<Json>(source);
@@ -502,10 +805,13 @@ namespace UclOpenYMaze
     [System.ComponentModel.DescriptionAttribute("Deserializes a sequence of JSON strings into data model objects.")]
     [System.ComponentModel.DefaultPropertyAttribute("Type")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<DoorCommand>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<ExperimentSession>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<RewardProbability>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeRig>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeTaskLogic>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeTaskParameters>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VisualStimulation>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Json>))]
     public partial class DeserializeFromJson : Bonsai.Expressions.SingleArgumentExpressionBuilder
     {
@@ -556,9 +862,19 @@ namespace UclOpenYMaze
             });
         }
 
+        public System.IObservable<string> Process(System.IObservable<DoorCommand> source)
+        {
+            return Process<DoorCommand>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<ExperimentSession> source)
         {
             return Process<ExperimentSession>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<RewardProbability> source)
+        {
+            return Process<RewardProbability>(source);
         }
 
         public System.IObservable<string> Process(System.IObservable<UclOpenYMazeRig> source)
@@ -576,6 +892,11 @@ namespace UclOpenYMaze
             return Process<UclOpenYMazeTaskParameters>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<VisualStimulation> source)
+        {
+            return Process<VisualStimulation>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<Json> source)
         {
             return Process<Json>(source);
@@ -590,10 +911,13 @@ namespace UclOpenYMaze
     [System.ComponentModel.DescriptionAttribute("Deserializes a sequence of YAML strings into data model objects.")]
     [System.ComponentModel.DefaultPropertyAttribute("Type")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<DoorCommand>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<ExperimentSession>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<RewardProbability>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeRig>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeTaskLogic>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeTaskParameters>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VisualStimulation>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Json>))]
     public partial class DeserializeFromYaml : Bonsai.Expressions.SingleArgumentExpressionBuilder
     {

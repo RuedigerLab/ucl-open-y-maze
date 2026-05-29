@@ -3,10 +3,16 @@ import os
 from ucl_open_y_maze.task import (
     UclOpenYMazeTaskLogic,
     UclOpenYMazeTaskParameters,
+    RewardProbability,
+    DoorCommand
 )
 
 task_logic = UclOpenYMazeTaskLogic(
-    task_parameters=UclOpenYMazeTaskParameters(),
+    task_parameters=UclOpenYMazeTaskParameters(
+        arm_reward_probabilities = {'a': RewardProbability(probability=1), 'b': RewardProbability(probability=0)},
+        trigger_door_mapping = {0: [DoorCommand(door_id=0, probability=1)], 1: [DoorCommand(door_id=0, probability=1)]},
+        trigger_visual_mapping = {}
+    ),
 )
 
 def main(path_seed: str = "./local/{schema}.json"):

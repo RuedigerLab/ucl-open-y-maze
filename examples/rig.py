@@ -4,7 +4,9 @@ from ucl_open_y_maze.rig import (
     UclOpenYMazeRig
 )
 
-rig = UclOpenYMazeRig()
+rig = UclOpenYMazeRig(
+    root_path="../temp_data"
+)
 
 def main(path_seed: str = "./local/{schema}.json"):
     os.makedirs(os.path.dirname(path_seed), exist_ok=True)

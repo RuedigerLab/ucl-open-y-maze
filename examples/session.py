@@ -3,9 +3,13 @@ import os
 
 from ucl_open.core.experiment import ExperimentSession
 
-# TODO - autofill experiment fields
-session = Experiment(
 
+session = ExperimentSession(
+    workflow="main.bonsai",
+    commit="",
+    repository_url="",
+    subject_id="Plimbo",
+    session_id="000"
 )
 
 def main(path_seed: str = "./local/{schema}.json"):
