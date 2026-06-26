@@ -27,6 +27,7 @@ class RegionTrigger(BaseSchema):
 
 class UclOpenYMazeTaskParameters(BaseSchema):
     rng_seed: Optional[float] = Field(default=None, description="Seed of the random number generator")
+    n_screens: int = Field(ge=0)
     region_triggers: Dict[int, RegionTrigger]
     arm_reward_probabilities: Dict[int, RewardProbability]
     trigger_door_mapping: Dict[int, List[DoorCommand]]

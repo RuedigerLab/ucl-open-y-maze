@@ -632,6 +632,8 @@ namespace UclOpenYMaze
     
         private double? _rngSeed;
     
+        private int _nScreens;
+    
         private System.Collections.Generic.Dictionary<string, RegionTrigger> _regionTriggers;
     
         private System.Collections.Generic.Dictionary<string, RewardProbability> _armRewardProbabilities;
@@ -651,6 +653,7 @@ namespace UclOpenYMaze
         protected UclOpenYMazeTaskParameters(UclOpenYMazeTaskParameters other)
         {
             _rngSeed = other._rngSeed;
+            _nScreens = other._nScreens;
             _regionTriggers = other._regionTriggers;
             _armRewardProbabilities = other._armRewardProbabilities;
             _triggerDoorMapping = other._triggerDoorMapping;
@@ -672,6 +675,20 @@ namespace UclOpenYMaze
             set
             {
                 _rngSeed = value;
+            }
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("nScreens", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="nScreens")]
+        public int NScreens
+        {
+            get
+            {
+                return _nScreens;
+            }
+            set
+            {
+                _nScreens = value;
             }
         }
     
@@ -748,6 +765,7 @@ namespace UclOpenYMaze
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
             stringBuilder.Append("RngSeed = " + _rngSeed + ", ");
+            stringBuilder.Append("NScreens = " + _nScreens + ", ");
             stringBuilder.Append("RegionTriggers = " + _regionTriggers + ", ");
             stringBuilder.Append("ArmRewardProbabilities = " + _armRewardProbabilities + ", ");
             stringBuilder.Append("TriggerDoorMapping = " + _triggerDoorMapping + ", ");

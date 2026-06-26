@@ -166,6 +166,11 @@
             "null"
           ]
         },
+        "nScreens": {
+          "minimum": 0,
+          "title": "NScreens",
+          "type": "integer"
+        },
         "regionTriggers": {
           "additionalProperties": {
             "$ref": "#/$defs/RegionTrigger"
@@ -199,6 +204,7 @@
         }
       },
       "required": [
+        "nScreens",
         "regionTriggers",
         "armRewardProbabilities",
         "triggerDoorMapping",
