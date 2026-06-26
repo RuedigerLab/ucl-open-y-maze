@@ -7,7 +7,7 @@ name = "ucl-open-y-maze"
 description = "A library that defines a ucl-open data schema for the y-maze experiment."
 authors = [ {name = "RoboDoig", email = "a.erskine@neurogears.org"}]
 license = "MIT"
-requires-python = ">=3.11, <3.12"
+requires-python = ">=3.13"
 classifiers = [
     "Programming Language :: Python :: 3.11",
     "Operating System :: Microsoft :: Windows",

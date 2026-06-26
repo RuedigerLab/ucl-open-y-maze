@@ -59,8 +59,41 @@
       "title": "ExperimentSession",
       "type": "object"
     },
+    "RegionTrigger": {
+      "properties": {
+        "threshold": {
+          "maximum": 255,
+          "minimum": 0,
+          "title": "Threshold",
+          "type": "integer"
+        },
+        "sumThreshold": {
+          "minimum": 0,
+          "title": "SumThreshold",
+          "type": "integer"
+        },
+        "regionPolygon": {
+          "items": {
+            "$ref": "#/$defs/Vector2"
+          },
+          "title": "RegionPolygon",
+          "type": "array"
+        }
+      },
+      "required": [
+        "threshold",
+        "sumThreshold",
+        "regionPolygon"
+      ],
+      "title": "RegionTrigger",
+      "type": "object"
+    },
     "RewardProbability": {
       "properties": {
+        "rewardId": {
+          "title": "RewardId",
+          "type": "integer"
+        },
         "probability": {
           "default": 0,
           "maximum": 1,
@@ -69,6 +102,9 @@
           "type": "number"
         }
       },
+      "required": [
+        "rewardId"
+      ],
       "title": "RewardProbability",
       "type": "object"
     },
@@ -130,6 +166,13 @@
             "null"
           ]
         },
+        "regionTriggers": {
+          "additionalProperties": {
+            "$ref": "#/$defs/RegionTrigger"
+          },
+          "title": "RegionTriggers",
+          "type": "object"
+        },
         "armRewardProbabilities": {
           "additionalProperties": {
             "$ref": "#/$defs/RewardProbability"
@@ -156,11 +199,32 @@
         }
       },
       "required": [
+        "regionTriggers",
         "armRewardProbabilities",
         "triggerDoorMapping",
         "triggerVisualMapping"
       ],
       "title": "UclOpenYMazeTaskParameters",
+      "type": "object"
+    },
+    "Vector2": {
+      "properties": {
+        "x": {
+          "description": "X coordinate of the point.",
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "description": "Y coordinate of the point.",
+          "title": "Y",
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "title": "Vector2",
       "type": "object"
     },
     "VisualStimulation": {

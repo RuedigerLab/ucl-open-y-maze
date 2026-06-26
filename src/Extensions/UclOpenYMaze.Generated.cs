@@ -9,7 +9,7 @@ namespace UclOpenYMaze
 {
     #pragma warning disable // Disable all warnings
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class DoorCommand
@@ -93,7 +93,7 @@ namespace UclOpenYMaze
     /// <summary>
     /// The base class for creating ucl-open experiment models.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
     [System.ComponentModel.DescriptionAttribute("The base class for creating ucl-open experiment models.")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
@@ -248,11 +248,113 @@ namespace UclOpenYMaze
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class RegionTrigger
+    {
+    
+        private int _threshold;
+    
+        private int _sumThreshold;
+    
+        private System.Collections.Generic.List<Vector2> _regionPolygon;
+    
+        public RegionTrigger()
+        {
+            _regionPolygon = new System.Collections.Generic.List<Vector2>();
+        }
+    
+        protected RegionTrigger(RegionTrigger other)
+        {
+            _threshold = other._threshold;
+            _sumThreshold = other._sumThreshold;
+            _regionPolygon = other._regionPolygon;
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("threshold", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="threshold")]
+        public int Threshold
+        {
+            get
+            {
+                return _threshold;
+            }
+            set
+            {
+                _threshold = value;
+            }
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("sumThreshold", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="sumThreshold")]
+        public int SumThreshold
+        {
+            get
+            {
+                return _sumThreshold;
+            }
+            set
+            {
+                _sumThreshold = value;
+            }
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("regionPolygon", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="regionPolygon")]
+        public System.Collections.Generic.List<Vector2> RegionPolygon
+        {
+            get
+            {
+                return _regionPolygon;
+            }
+            set
+            {
+                _regionPolygon = value;
+            }
+        }
+    
+        public System.IObservable<RegionTrigger> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new RegionTrigger(this)));
+        }
+    
+        public System.IObservable<RegionTrigger> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new RegionTrigger(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("Threshold = " + _threshold + ", ");
+            stringBuilder.Append("SumThreshold = " + _sumThreshold + ", ");
+            stringBuilder.Append("RegionPolygon = " + _regionPolygon);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class RewardProbability
     {
+    
+        private int _rewardId;
     
         private double _probability;
     
@@ -263,7 +365,22 @@ namespace UclOpenYMaze
     
         protected RewardProbability(RewardProbability other)
         {
+            _rewardId = other._rewardId;
             _probability = other._probability;
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("rewardId", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="rewardId")]
+        public int RewardId
+        {
+            get
+            {
+                return _rewardId;
+            }
+            set
+            {
+                _rewardId = value;
+            }
         }
     
         [Newtonsoft.Json.JsonPropertyAttribute("probability")]
@@ -292,6 +409,7 @@ namespace UclOpenYMaze
     
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
+            stringBuilder.Append("RewardId = " + _rewardId + ", ");
             stringBuilder.Append("Probability = " + _probability);
             return true;
         }
@@ -311,7 +429,7 @@ namespace UclOpenYMaze
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class UclOpenYMazeRig
@@ -396,7 +514,7 @@ namespace UclOpenYMaze
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class UclOpenYMazeTaskLogic
@@ -506,13 +624,15 @@ namespace UclOpenYMaze
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class UclOpenYMazeTaskParameters
     {
     
         private double? _rngSeed;
+    
+        private System.Collections.Generic.Dictionary<string, RegionTrigger> _regionTriggers;
     
         private System.Collections.Generic.Dictionary<string, RewardProbability> _armRewardProbabilities;
     
@@ -522,6 +642,7 @@ namespace UclOpenYMaze
     
         public UclOpenYMazeTaskParameters()
         {
+            _regionTriggers = new System.Collections.Generic.Dictionary<string, RegionTrigger>();
             _armRewardProbabilities = new System.Collections.Generic.Dictionary<string, RewardProbability>();
             _triggerDoorMapping = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<DoorCommand>>();
             _triggerVisualMapping = new System.Collections.Generic.Dictionary<string, VisualStimulation>();
@@ -530,6 +651,7 @@ namespace UclOpenYMaze
         protected UclOpenYMazeTaskParameters(UclOpenYMazeTaskParameters other)
         {
             _rngSeed = other._rngSeed;
+            _regionTriggers = other._regionTriggers;
             _armRewardProbabilities = other._armRewardProbabilities;
             _triggerDoorMapping = other._triggerDoorMapping;
             _triggerVisualMapping = other._triggerVisualMapping;
@@ -550,6 +672,21 @@ namespace UclOpenYMaze
             set
             {
                 _rngSeed = value;
+            }
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("regionTriggers", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="regionTriggers")]
+        public System.Collections.Generic.Dictionary<string, RegionTrigger> RegionTriggers
+        {
+            get
+            {
+                return _regionTriggers;
+            }
+            set
+            {
+                _regionTriggers = value;
             }
         }
     
@@ -611,6 +748,7 @@ namespace UclOpenYMaze
         protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
         {
             stringBuilder.Append("RngSeed = " + _rngSeed + ", ");
+            stringBuilder.Append("RegionTriggers = " + _regionTriggers + ", ");
             stringBuilder.Append("ArmRewardProbabilities = " + _armRewardProbabilities + ", ");
             stringBuilder.Append("TriggerDoorMapping = " + _triggerDoorMapping + ", ");
             stringBuilder.Append("TriggerVisualMapping = " + _triggerVisualMapping);
@@ -632,7 +770,95 @@ namespace UclOpenYMaze
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class Vector2
+    {
+    
+        private double _x;
+    
+        private double _y;
+    
+        public Vector2()
+        {
+        }
+    
+        protected Vector2(Vector2 other)
+        {
+            _x = other._x;
+            _y = other._y;
+        }
+    
+        /// <summary>
+        /// X coordinate of the point.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("x", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="x")]
+        [System.ComponentModel.DescriptionAttribute("X coordinate of the point.")]
+        public double X
+        {
+            get
+            {
+                return _x;
+            }
+            set
+            {
+                _x = value;
+            }
+        }
+    
+        /// <summary>
+        /// Y coordinate of the point.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("y", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="y")]
+        [System.ComponentModel.DescriptionAttribute("Y coordinate of the point.")]
+        public double Y
+        {
+            get
+            {
+                return _y;
+            }
+            set
+            {
+                _y = value;
+            }
+        }
+    
+        public System.IObservable<Vector2> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new Vector2(this)));
+        }
+    
+        public System.IObservable<Vector2> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new Vector2(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("X = " + _x + ", ");
+            stringBuilder.Append("Y = " + _y);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class VisualStimulation
@@ -694,7 +920,7 @@ namespace UclOpenYMaze
     }
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class Json
@@ -741,7 +967,7 @@ namespace UclOpenYMaze
     /// <summary>
     /// Serializes a sequence of data model objects into JSON strings.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
     [System.ComponentModel.DescriptionAttribute("Serializes a sequence of data model objects into JSON strings.")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
     [Bonsai.CombinatorAttribute()]
@@ -766,6 +992,11 @@ namespace UclOpenYMaze
             return Process<ExperimentSession>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<RegionTrigger> source)
+        {
+            return Process<RegionTrigger>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<RewardProbability> source)
         {
             return Process<RewardProbability>(source);
@@ -786,6 +1017,11 @@ namespace UclOpenYMaze
             return Process<UclOpenYMazeTaskParameters>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<Vector2> source)
+        {
+            return Process<Vector2>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<VisualStimulation> source)
         {
             return Process<VisualStimulation>(source);
@@ -801,16 +1037,18 @@ namespace UclOpenYMaze
     /// <summary>
     /// Deserializes a sequence of JSON strings into data model objects.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
     [System.ComponentModel.DescriptionAttribute("Deserializes a sequence of JSON strings into data model objects.")]
     [System.ComponentModel.DefaultPropertyAttribute("Type")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<DoorCommand>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<ExperimentSession>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<RegionTrigger>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<RewardProbability>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeRig>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeTaskLogic>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeTaskParameters>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Vector2>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VisualStimulation>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Json>))]
     public partial class DeserializeFromJson : Bonsai.Expressions.SingleArgumentExpressionBuilder
@@ -844,7 +1082,7 @@ namespace UclOpenYMaze
     /// <summary>
     /// Serializes a sequence of data model objects into YAML strings.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
     [System.ComponentModel.DescriptionAttribute("Serializes a sequence of data model objects into YAML strings.")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
     [Bonsai.CombinatorAttribute()]
@@ -872,6 +1110,11 @@ namespace UclOpenYMaze
             return Process<ExperimentSession>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<RegionTrigger> source)
+        {
+            return Process<RegionTrigger>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<RewardProbability> source)
         {
             return Process<RewardProbability>(source);
@@ -892,6 +1135,11 @@ namespace UclOpenYMaze
             return Process<UclOpenYMazeTaskParameters>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<Vector2> source)
+        {
+            return Process<Vector2>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<VisualStimulation> source)
         {
             return Process<VisualStimulation>(source);
@@ -907,16 +1155,18 @@ namespace UclOpenYMaze
     /// <summary>
     /// Deserializes a sequence of YAML strings into data model objects.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.7.2.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
     [System.ComponentModel.DescriptionAttribute("Deserializes a sequence of YAML strings into data model objects.")]
     [System.ComponentModel.DefaultPropertyAttribute("Type")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<DoorCommand>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<ExperimentSession>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<RegionTrigger>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<RewardProbability>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeRig>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeTaskLogic>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeTaskParameters>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Vector2>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<VisualStimulation>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Json>))]
     public partial class DeserializeFromYaml : Bonsai.Expressions.SingleArgumentExpressionBuilder
