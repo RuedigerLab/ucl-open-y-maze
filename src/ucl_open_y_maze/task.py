@@ -24,14 +24,18 @@ class RegionTrigger(BaseSchema):
     threshold: int = Field(ge=0, le=255)
     sum_threshold: int = Field(ge=0)
     region_polygon: List[Vector2]
-
-class UclOpenYMazeTaskParameters(BaseSchema):
-    rng_seed: Optional[float] = Field(default=None, description="Seed of the random number generator")
-    n_screens: int = Field(ge=0)
+    
+class TrialParameters(BaseSchema):
     region_triggers: Dict[int, RegionTrigger]
     arm_reward_probabilities: Dict[int, RewardProbability]
     trigger_door_mapping: Dict[int, List[DoorCommand]]
     trigger_visual_mapping: Dict[int, VisualStimulation]
+    trial_time: float = Field(default=30)
+
+class UclOpenYMazeTaskParameters(BaseSchema):
+    rng_seed: Optional[float] = Field(default=None, description="Seed of the random number generator")
+    n_screens: int = Field(ge=0)
+    trials: List[TrialParameters]
 
 class UclOpenYMazeTaskLogic(BaseSchema):
     version: Literal[__semver__] = __semver__

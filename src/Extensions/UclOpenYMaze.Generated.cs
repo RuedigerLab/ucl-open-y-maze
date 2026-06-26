@@ -432,6 +432,149 @@ namespace UclOpenYMaze
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
     [Bonsai.CombinatorAttribute(MethodName="Generate")]
+    public partial class TrialParameters
+    {
+    
+        private System.Collections.Generic.Dictionary<string, RegionTrigger> _regionTriggers;
+    
+        private System.Collections.Generic.Dictionary<string, RewardProbability> _armRewardProbabilities;
+    
+        private System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<DoorCommand>> _triggerDoorMapping;
+    
+        private System.Collections.Generic.Dictionary<string, VisualStimulation> _triggerVisualMapping;
+    
+        private double _trialTime;
+    
+        public TrialParameters()
+        {
+            _regionTriggers = new System.Collections.Generic.Dictionary<string, RegionTrigger>();
+            _armRewardProbabilities = new System.Collections.Generic.Dictionary<string, RewardProbability>();
+            _triggerDoorMapping = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<DoorCommand>>();
+            _triggerVisualMapping = new System.Collections.Generic.Dictionary<string, VisualStimulation>();
+            _trialTime = 30D;
+        }
+    
+        protected TrialParameters(TrialParameters other)
+        {
+            _regionTriggers = other._regionTriggers;
+            _armRewardProbabilities = other._armRewardProbabilities;
+            _triggerDoorMapping = other._triggerDoorMapping;
+            _triggerVisualMapping = other._triggerVisualMapping;
+            _trialTime = other._trialTime;
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("regionTriggers", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="regionTriggers")]
+        public System.Collections.Generic.Dictionary<string, RegionTrigger> RegionTriggers
+        {
+            get
+            {
+                return _regionTriggers;
+            }
+            set
+            {
+                _regionTriggers = value;
+            }
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("armRewardProbabilities", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="armRewardProbabilities")]
+        public System.Collections.Generic.Dictionary<string, RewardProbability> ArmRewardProbabilities
+        {
+            get
+            {
+                return _armRewardProbabilities;
+            }
+            set
+            {
+                _armRewardProbabilities = value;
+            }
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("triggerDoorMapping", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="triggerDoorMapping")]
+        public System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<DoorCommand>> TriggerDoorMapping
+        {
+            get
+            {
+                return _triggerDoorMapping;
+            }
+            set
+            {
+                _triggerDoorMapping = value;
+            }
+        }
+    
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        [Newtonsoft.Json.JsonPropertyAttribute("triggerVisualMapping", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="triggerVisualMapping")]
+        public System.Collections.Generic.Dictionary<string, VisualStimulation> TriggerVisualMapping
+        {
+            get
+            {
+                return _triggerVisualMapping;
+            }
+            set
+            {
+                _triggerVisualMapping = value;
+            }
+        }
+    
+        [Newtonsoft.Json.JsonPropertyAttribute("trialTime")]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="trialTime")]
+        public double TrialTime
+        {
+            get
+            {
+                return _trialTime;
+            }
+            set
+            {
+                _trialTime = value;
+            }
+        }
+    
+        public System.IObservable<TrialParameters> Generate()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(new TrialParameters(this)));
+        }
+    
+        public System.IObservable<TrialParameters> Generate<TSource>(System.IObservable<TSource> source)
+        {
+            return System.Reactive.Linq.Observable.Select(source, _ => new TrialParameters(this));
+        }
+    
+        protected virtual bool PrintMembers(System.Text.StringBuilder stringBuilder)
+        {
+            stringBuilder.Append("RegionTriggers = " + _regionTriggers + ", ");
+            stringBuilder.Append("ArmRewardProbabilities = " + _armRewardProbabilities + ", ");
+            stringBuilder.Append("TriggerDoorMapping = " + _triggerDoorMapping + ", ");
+            stringBuilder.Append("TriggerVisualMapping = " + _triggerVisualMapping + ", ");
+            stringBuilder.Append("TrialTime = " + _trialTime);
+            return true;
+        }
+    
+        public override string ToString()
+        {
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            stringBuilder.Append(GetType().Name);
+            stringBuilder.Append(" { ");
+            if (PrintMembers(stringBuilder))
+            {
+                stringBuilder.Append(" ");
+            }
+            stringBuilder.Append("}");
+            return stringBuilder.ToString();
+        }
+    }
+
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Bonsai.Sgen", "0.9.0.0 (Newtonsoft.Json v13.0.0.0, YamlDotNet v16.0.0.0)")]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    [Bonsai.CombinatorAttribute(MethodName="Generate")]
     public partial class UclOpenYMazeRig
     {
     
@@ -634,30 +777,18 @@ namespace UclOpenYMaze
     
         private int _nScreens;
     
-        private System.Collections.Generic.Dictionary<string, RegionTrigger> _regionTriggers;
-    
-        private System.Collections.Generic.Dictionary<string, RewardProbability> _armRewardProbabilities;
-    
-        private System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<DoorCommand>> _triggerDoorMapping;
-    
-        private System.Collections.Generic.Dictionary<string, VisualStimulation> _triggerVisualMapping;
+        private System.Collections.Generic.List<TrialParameters> _trials;
     
         public UclOpenYMazeTaskParameters()
         {
-            _regionTriggers = new System.Collections.Generic.Dictionary<string, RegionTrigger>();
-            _armRewardProbabilities = new System.Collections.Generic.Dictionary<string, RewardProbability>();
-            _triggerDoorMapping = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<DoorCommand>>();
-            _triggerVisualMapping = new System.Collections.Generic.Dictionary<string, VisualStimulation>();
+            _trials = new System.Collections.Generic.List<TrialParameters>();
         }
     
         protected UclOpenYMazeTaskParameters(UclOpenYMazeTaskParameters other)
         {
             _rngSeed = other._rngSeed;
             _nScreens = other._nScreens;
-            _regionTriggers = other._regionTriggers;
-            _armRewardProbabilities = other._armRewardProbabilities;
-            _triggerDoorMapping = other._triggerDoorMapping;
-            _triggerVisualMapping = other._triggerVisualMapping;
+            _trials = other._trials;
         }
     
         /// <summary>
@@ -693,62 +824,17 @@ namespace UclOpenYMaze
         }
     
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("regionTriggers", Required=Newtonsoft.Json.Required.Always)]
-        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="regionTriggers")]
-        public System.Collections.Generic.Dictionary<string, RegionTrigger> RegionTriggers
+        [Newtonsoft.Json.JsonPropertyAttribute("trials", Required=Newtonsoft.Json.Required.Always)]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="trials")]
+        public System.Collections.Generic.List<TrialParameters> Trials
         {
             get
             {
-                return _regionTriggers;
+                return _trials;
             }
             set
             {
-                _regionTriggers = value;
-            }
-        }
-    
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("armRewardProbabilities", Required=Newtonsoft.Json.Required.Always)]
-        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="armRewardProbabilities")]
-        public System.Collections.Generic.Dictionary<string, RewardProbability> ArmRewardProbabilities
-        {
-            get
-            {
-                return _armRewardProbabilities;
-            }
-            set
-            {
-                _armRewardProbabilities = value;
-            }
-        }
-    
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("triggerDoorMapping", Required=Newtonsoft.Json.Required.Always)]
-        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="triggerDoorMapping")]
-        public System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<DoorCommand>> TriggerDoorMapping
-        {
-            get
-            {
-                return _triggerDoorMapping;
-            }
-            set
-            {
-                _triggerDoorMapping = value;
-            }
-        }
-    
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        [Newtonsoft.Json.JsonPropertyAttribute("triggerVisualMapping", Required=Newtonsoft.Json.Required.Always)]
-        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="triggerVisualMapping")]
-        public System.Collections.Generic.Dictionary<string, VisualStimulation> TriggerVisualMapping
-        {
-            get
-            {
-                return _triggerVisualMapping;
-            }
-            set
-            {
-                _triggerVisualMapping = value;
+                _trials = value;
             }
         }
     
@@ -766,10 +852,7 @@ namespace UclOpenYMaze
         {
             stringBuilder.Append("RngSeed = " + _rngSeed + ", ");
             stringBuilder.Append("NScreens = " + _nScreens + ", ");
-            stringBuilder.Append("RegionTriggers = " + _regionTriggers + ", ");
-            stringBuilder.Append("ArmRewardProbabilities = " + _armRewardProbabilities + ", ");
-            stringBuilder.Append("TriggerDoorMapping = " + _triggerDoorMapping + ", ");
-            stringBuilder.Append("TriggerVisualMapping = " + _triggerVisualMapping);
+            stringBuilder.Append("Trials = " + _trials);
             return true;
         }
     
@@ -1020,6 +1103,11 @@ namespace UclOpenYMaze
             return Process<RewardProbability>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<TrialParameters> source)
+        {
+            return Process<TrialParameters>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<UclOpenYMazeRig> source)
         {
             return Process<UclOpenYMazeRig>(source);
@@ -1063,6 +1151,7 @@ namespace UclOpenYMaze
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<ExperimentSession>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<RegionTrigger>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<RewardProbability>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<TrialParameters>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeRig>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeTaskLogic>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeTaskParameters>))]
@@ -1138,6 +1227,11 @@ namespace UclOpenYMaze
             return Process<RewardProbability>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<TrialParameters> source)
+        {
+            return Process<TrialParameters>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<UclOpenYMazeRig> source)
         {
             return Process<UclOpenYMazeRig>(source);
@@ -1181,6 +1275,7 @@ namespace UclOpenYMaze
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<ExperimentSession>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<RegionTrigger>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<RewardProbability>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<TrialParameters>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeRig>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeTaskLogic>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UclOpenYMazeTaskParameters>))]

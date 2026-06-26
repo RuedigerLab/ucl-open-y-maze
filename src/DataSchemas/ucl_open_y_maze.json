@@ -108,6 +108,54 @@
       "title": "RewardProbability",
       "type": "object"
     },
+    "TrialParameters": {
+      "properties": {
+        "regionTriggers": {
+          "additionalProperties": {
+            "$ref": "#/$defs/RegionTrigger"
+          },
+          "title": "RegionTriggers",
+          "type": "object"
+        },
+        "armRewardProbabilities": {
+          "additionalProperties": {
+            "$ref": "#/$defs/RewardProbability"
+          },
+          "title": "ArmRewardProbabilities",
+          "type": "object"
+        },
+        "triggerDoorMapping": {
+          "additionalProperties": {
+            "items": {
+              "$ref": "#/$defs/DoorCommand"
+            },
+            "type": "array"
+          },
+          "title": "TriggerDoorMapping",
+          "type": "object"
+        },
+        "triggerVisualMapping": {
+          "additionalProperties": {
+            "$ref": "#/$defs/VisualStimulation"
+          },
+          "title": "TriggerVisualMapping",
+          "type": "object"
+        },
+        "trialTime": {
+          "default": 30,
+          "title": "TrialTime",
+          "type": "number"
+        }
+      },
+      "required": [
+        "regionTriggers",
+        "armRewardProbabilities",
+        "triggerDoorMapping",
+        "triggerVisualMapping"
+      ],
+      "title": "TrialParameters",
+      "type": "object"
+    },
     "UclOpenYMazeRig": {
       "properties": {
         "rootPath": {
@@ -171,44 +219,17 @@
           "title": "NScreens",
           "type": "integer"
         },
-        "regionTriggers": {
-          "additionalProperties": {
-            "$ref": "#/$defs/RegionTrigger"
+        "trials": {
+          "items": {
+            "$ref": "#/$defs/TrialParameters"
           },
-          "title": "RegionTriggers",
-          "type": "object"
-        },
-        "armRewardProbabilities": {
-          "additionalProperties": {
-            "$ref": "#/$defs/RewardProbability"
-          },
-          "title": "ArmRewardProbabilities",
-          "type": "object"
-        },
-        "triggerDoorMapping": {
-          "additionalProperties": {
-            "items": {
-              "$ref": "#/$defs/DoorCommand"
-            },
-            "type": "array"
-          },
-          "title": "TriggerDoorMapping",
-          "type": "object"
-        },
-        "triggerVisualMapping": {
-          "additionalProperties": {
-            "$ref": "#/$defs/VisualStimulation"
-          },
-          "title": "TriggerVisualMapping",
-          "type": "object"
+          "title": "Trials",
+          "type": "array"
         }
       },
       "required": [
         "nScreens",
-        "regionTriggers",
-        "armRewardProbabilities",
-        "triggerDoorMapping",
-        "triggerVisualMapping"
+        "trials"
       ],
       "title": "UclOpenYMazeTaskParameters",
       "type": "object"
